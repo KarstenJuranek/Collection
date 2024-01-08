@@ -108,7 +108,6 @@ public class Collections
                 S4.add('C');
             //Entfernen von Elementen
                 S4.remove('C');
-            
 
             /*
             Ist eine SortedSet auch ein Set?
@@ -134,12 +133,13 @@ public class Collections
             Map<Character, Integer>
                 M1 = Map.of('1', 1, '2', 2, '3', 3,
                             '4', 4, '5', 5, '6', 6),
-                M2 = new HashMap<>(M1), M3 = new LinkedHashMap<>(M1),
+                M2 = new HashMap<>(M1), 
+                M3 = new LinkedHashMap<>(M1),
                 M4 = new TreeMap<>(Character::compareTo);   // (Comparator optional)
             // Fragen: Nach welchem Kriterium wird M4 sortiert?
             //         Wo/Wie wirkt sich die Sortierung überhaupt aus?
 
-            System.out.println();
+            System.out.println(M1 + " - "+ M2 + " - "+ M3 + " - "+ M4);
         } 
     }
         
