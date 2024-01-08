@@ -136,9 +136,14 @@ public class Collections
                 M2 = new HashMap<>(M1), 
                 M3 = new LinkedHashMap<>(M1),
                 M4 = new TreeMap<>(Character::compareTo);   // (Comparator optional)
-            // Fragen: Nach welchem Kriterium wird M4 sortiert?
-            //         Wo/Wie wirkt sich die Sortierung überhaupt aus?
 
+        /*
+        Nach welchem Kriterium wird M4 soritert?
+
+
+        Wo/Wie wirkt sich die Sorierung überhaupt aus?
+        
+         */
             System.out.println(M1 + " - "+ M2 + " - "+ M3 + " - "+ M4);
         } 
     }
