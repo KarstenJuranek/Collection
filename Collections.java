@@ -3,34 +3,101 @@ package Main;
 import java.util.*;
 import java.util.function.*;
 
-public class Main
+public class Collections
 {
     public static void main(String[] args)
     {
         // ### Grundlagen von Collections in Java ###
         {
-            // Interfaces (Zugriffsschnittstellen ohne Implementierung/Kode)
-            // List<T>, (Sorted)Set<T>, (Sorted)Map<T, U> mit konkreten
-            // Realisierungen als Klassen, die Interfaces implementieren:
-            // * List<T>: ArrayList<T>, LinkedList<T>, Vector<T>
-            // * Set<T>: (Linked)HashSet<T>, TreeSet<T> (sortiert)
-            // * Map<T, U>: (Linked)HashMap<T>, TreeMap<U, T> (sortiert),
-            //              ConcurrentHashMap<T, U> u.a.
+            /*  
+            Interfaces sind Zugriffsschnittstellen ohne Implementierung oder Code.
+            Es gibt List<T>, (Sorted)Set<T>, (Sorted)Map<T, U> welche konkret als Klasse
+            fungieren und als Interface implementiert:
+                * List<T>:  ArrayList<T>, LinkedList<T>, Vector<T>
+                * Set<T>:   (Linked)HashSet<T>, TreeSet<T> (sortiert+)
+                * Map<T, U>:(Linked)HashMap<T>, TreeMap<U, T> (sortiert),
+                            ConcurrentHashMap<T, U> u.a.
+            */
+            {
+            /*
+            Allgemeine Informationen zu Listen
+            Lists präsentieren eine geordnete Sammlung an Elementen, in der Elemente
+            anhand ihres Index zugänglich sind. Die indexiierung beginnt stets bei 0
+            Wichtige Methoden sind: 
+            add(e: element) - get(index: x) - remove(index: x) - size();
 
-            // Beispiele:
+            ArrayLists:
+            Haben im gegebsatz zu List.of eine Dynamische Größenänderung.
+            Schneller Zugriff via dem Index.
+            Einfüge und Entfernungsoperationen können bei größeren Datenmengen 
+            effizent sein.
+            ArrayLists eigenen sich somit besser ür häuffige Lesezugrifffe
+
+            LinkedLists:
+            Basiert auf doppelt verkettete Listen zur Speicherung von Elementen.
+            Dadurch ist das Einfügen und Entfernen von Elementen, insbesondere in 
+            der Mitte der Liste sehr Efizient.
+            Jedoch Langsamer Zugriff über den Index im Vergleich zur ArrayList.
+            Benötigt ebenso mehr Speicherplatz als die ArrayList.
+            LinkedLists sind für häufige Einfüge- & Entfernungsoperationen geeignet
+             */
+
+            // Beispiele für List Implementierungen
             List<Integer>               // manche mit/ohne erlaubte 'null's
                 L1 = List.of(1, 2, 3, 4, 5, 6),
-                L2 = new ArrayList<>(L1), L3 = new LinkedList<>(L1),
-                L4 = new Vector<>(L1);
+                L2 = new ArrayList<>(L1), 
+                L3 = new LinkedList<>(L1);                
+
+                //Hinzufügen von Elementen
+                L2.add(7);
+
+                //Abrufen eines bestimmten Indexes
+                int elementAtIndex2 = L1.get(1);
+                System.out.println("Element an 2ter Stelle: "+ elementAtIndex2);
+
+                //Entfernen eines Elementes
+                L2.remove(2);
+
+                //Abrufen der größe der Liste
+                int listSize = L1.size();
+                System.out.println("Größe der Liste "+ listSize);
+
+                //Ausgabe in der Konsole
+                System.out.println(L1 + "-" + L2 + "-" +  L3);
+            }
             
+            {
+            /*
+            Allgemeine Informationen zu Sets
+            Sets sind eine Sammlung von eindeutigen Elementen, in der jedes Element nur
+            einmal vorkommen kann.
+
+            Sets repräsentieren eine ungeordnete Sammlung an eindeutigen Elementen.
+            SortedSets sind ein Erweiterung von Sets die Elemente hier werden nach einen
+            Comparator soriert.
+
+            HashSets:
+            verwendet HashTabellen zur Speicherung der Elemente. Dies ermöglicht einen 
+            schnellen Zugriff auf die Elemente. Es besteht keine vorgegebene Reihenfolge
+
+            LinkedHashSets:
+            Ist eine Erweiterung der HashSets. Sie behält die Einfügereihenfolge bei.
+            Sie bietet ebenso einen schnellen Zugriff auf die Elemente.
+
+            TreeSet    
+            */
             Set<Character>
-                Z1 = Set.of('A', 'B', 'C', 'D', 'E', 'F'),
-                Z2 = new HashSet<>(Z1), Z3 = new LinkedHashSet<>(Z1);
+                S1 = Set.of('A', 'B', 'C', 'D', 'E', 'F'),
+                S2 = new HashSet<>(S1), 
+                S3 = new LinkedHashSet<>(S1);
             SortedSet<Character>
-                Z4 = new TreeSet<>(Character::compareTo);   // (Comparator optional)
+                S4 = new TreeSet<>(Character::compareTo);   // (Comparator optional)
             // Fragen: Ist ein SortedSet auch ein Set?
-            //         Kann Z4 auch unter Set<Character> instantiiert werden?
-            
+            //         Kann S4 auch unter Set<Character> instantiiert werden?
+
+            System.out.println();
+
+            }
             Map<Character, Integer>
                 M1 = Map.of('1', 1, '2', 2, '3', 3,
                             '4', 4, '5', 5, '6', 6),
@@ -93,7 +160,7 @@ public class Main
             Predicate<Character> P = C -> Character.isUpperCase(C); // Character::isUpperCase
 
             L.removeIf(P);  // L.removeIf(P.negate());
-            //System.out.println(L);
+            System.out.println();
         }
     
         // Sortierung 1
