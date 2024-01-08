@@ -18,6 +18,9 @@ public class Collections
                 * Map<T, U>:(Linked)HashMap<T>, TreeMap<U, T> (sortiert),
                             ConcurrentHashMap<T, U> u.a.
             */
+            
+            System.out.println("Lists: ");
+
             {
             /*
             Allgemeine Informationen zu Listen
@@ -63,9 +66,11 @@ public class Collections
                 System.out.println("Größe der Liste "+ listSize);
 
                 //Ausgabe in der Konsole
-                System.out.println(L1 + "-" + L2 + "-" +  L3);
+                System.out.println(L1 + " - " + L2 + " - " +  L3);
             }
             
+            System.out.println( "\n" + "Sets: ");
+
             {
             /*
             Allgemeine Informationen zu Sets
@@ -84,20 +89,48 @@ public class Collections
             Ist eine Erweiterung der HashSets. Sie behält die Einfügereihenfolge bei.
             Sie bietet ebenso einen schnellen Zugriff auf die Elemente.
 
-            TreeSet    
+            TreeSet:
+            Diese Klasse implementiert das SortedSet und benutzt ein ausgewogenes 
+            Baumdiagramm zur Speicherung der Elemente.
+            Elemente werden in Aufsteigender Reihenforlge sortiert (oder nach einen Comparator)
+            Besitzt langsamere Einfüge und Entfernungsoperationen im Vergleich zu HS/LHS
+
             */
             Set<Character>
                 S1 = Set.of('A', 'B', 'C', 'D', 'E', 'F'),
                 S2 = new HashSet<>(S1), 
                 S3 = new LinkedHashSet<>(S1);
             SortedSet<Character>
-                S4 = new TreeSet<>(Character::compareTo);   // (Comparator optional)
-            // Fragen: Ist ein SortedSet auch ein Set?
-            //         Kann S4 auch unter Set<Character> instantiiert werden?
+                S4 = new TreeSet<>(Character::compareTo); // (Comparator optional)
+            //Hinzufügen von Elementen in ein Set
+                S4.add('A');
+                S4.add('B');
+                S4.add('C');
+            //Entfernen von Elementen
+                S4.remove('C');
+            
 
-            System.out.println();
+            /*
+            Ist eine SortedSet auch ein Set?
+            Ja es ist eine Variation der Sets die lediglich durch einen Comparator soriert wird.
 
+            Kann S4 auch unter Set<Character> instantiiert werden?
+            Ja, es ist möglich ein Treeset unter Set<Character> zu instzanziieren.
+             */
+
+            //Ausgabe in der Konsole
+            System.out.println(S1 + " - " + S2 + " - " + S3 + " - " + S4);
             }
+
+            System.out.println( "\n" + "Maps: ");
+
+            {
+            /*
+            Allgemeine Informationen zu Maps
+            
+
+
+             */
             Map<Character, Integer>
                 M1 = Map.of('1', 1, '2', 2, '3', 3,
                             '4', 4, '5', 5, '6', 6),
@@ -105,7 +138,10 @@ public class Collections
                 M4 = new TreeMap<>(Character::compareTo);   // (Comparator optional)
             // Fragen: Nach welchem Kriterium wird M4 sortiert?
             //         Wo/Wie wirkt sich die Sortierung überhaupt aus?
-        }
+
+            System.out.println();
+        } 
+    }
         
         // ### Grundlagen von Funktionsobjekten (Lambdas) in Java ###
         {
@@ -291,4 +327,18 @@ public class Collections
             //    ("ABCD" und "AbcD" => 0.75 bei Mittelung der Einzelwerte)
         }
     }
+    /*
+    Lists und Sets:
+    Gemeinsamkeiten:
+    - Beide können eine sortierte Reihenfolge besitzen.
+    - Mehrere Elemente können darin gespeichert werden.
+    - Unterschiedliche Datentypen können darin gespeichert werden
+    - Beide bieten Methoden zum Verrarbeiten ihrer Elemente (sortieren/suchen usw.)
+    Unterschiede:
+    - Sets können keine Duplikate besitzen, Lists dagegen schon.
+    - Sets, sind in der Regel unsortiert.
+    - In Sets können Elemente nicht nachträglich geändert wrden. Nur das Hinzufügen und
+    Entfernen von Elementen ermöglicht dies,
+    -   Elemente in Lists sind über einen Index zugreibar, in Sets nicht.
+     */
 }
