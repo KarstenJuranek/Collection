@@ -183,6 +183,9 @@ public class Collections
         } 
     }
         
+
+    System.out.println( "\n" + "Functions: ");
+
         // ### Grundlagen von Funktionsobjekten (Lambdas) in Java ###
         {
             // Beschreibung:
