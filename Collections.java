@@ -126,10 +126,29 @@ public class Collections
             {
             /*
             Allgemeine Informationen zu Maps
-            
+            Maps stellen eine Sammlung aus Schlüüssel-Wert-Paaren wieder. Das bedeutet jeder
+            Schlüssel ist eindeutig einem Wert zuzuweisen.
 
+            HashMaps:
+            Die Reihenfolge der Wiedergabe von Elementen ist Ungeordnet undd nicht vorhersehbar.
+            Die bietet eine höhe Leistung beim Löschen und einfügen von Inhalten. 
+            Erlaubt Null-Werte sowohl ab Schlüssel als auch am Wert.
+            nicht threadsicher. Wenn mehrere gleichzeitig laufen und einer die Map ändert, muss eine
+            externe Synchronisation folgen.
 
+            LinkedHashMap:
+            Sie behält im Gegensatz zu der HashMap seine Reihenfolgen der Einfügung bei.
+            Erlaubt ebenfalls Nullwerte.
+            Leicht höhere Leisungseinbußen, aufgrund der einhaltung der Reihenfolge.
+            Ebenfalls nicht threadsicher.
+
+            TreeMaps:
+            Die Treemaps behalten ihre Reihenfolge bei oder ihre Reihenfolge wird anhand
+            eines Comparators eigens bestimmt.
+            Treemaps funktionieren langsamer, aufgrund ihrer logarithmischen Zeitkomplexität.
+            Erlaubt keine Null-Werte und ist nicht threadsicher.
              */
+
             Map<Character, Integer>
                 M1 = Map.of('1', 1, '2', 2, '3', 3,
                             '4', 4, '5', 5, '6', 6),
@@ -137,12 +156,28 @@ public class Collections
                 M3 = new LinkedHashMap<>(M1),
                 M4 = new TreeMap<>(Character::compareTo);   // (Comparator optional)
 
+            //Einfügen von Werten in die Map (beachte! M1 nicht möglich, da Sie unveränderlich ist)
+                M2.put('7', 7);
+                M4.put('1',2);
+                M4.put('2',5);
+            //Entfernt Werte von dem folgenden Key
+                M2.remove('7');
+            //Überprüft ob ein bestimmer Wert oder ein Key vorhanden ist
+                M2.containsValue(4);
+                M2.containsKey('2');
+
+
+            //Fügt alle Schlüssel Wert Paare in eine andere Map
+                M2.putAll(M4);
+
         /*
         Nach welchem Kriterium wird M4 soritert?
-
+        Die Maps werden anhand des Comparators sortiert. Das heißt, Sie werden hier nach aufsteigender
+        lexikographischer Reihenfolge der Unicode Tabelle soriert.
 
         Wo/Wie wirkt sich die Sorierung überhaupt aus?
-        
+        Die Iteration des Comparators gibt die Elemente der TreeMap in aufsteigender
+        Reihenfolge der Schlüssel wieder
          */
             System.out.println(M1 + " - "+ M2 + " - "+ M3 + " - "+ M4);
         } 
