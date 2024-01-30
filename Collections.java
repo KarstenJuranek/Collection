@@ -280,21 +280,27 @@ public class Collections
             //Ein Substring wird gebildet ab dem 4ten Buchstaben des Eingabestrings
                 S4 = G4.apply("blabla", 3);
 
-            System.out.println(B2+", "+B3+", "+S3+", "+S4);
+            System.out.println(B2+", "+B3+", "+S3+", "+S4+"\n");
         }
         
         // ### Vordefinierte Funktionen und Methoden mit Funktionsparametern ###
-    
-        // Filterung/Entfernung
+        // Filterung/Entfernung einer Liste
         {
+            //Erstellen einer Liste von Characters
             List<Character> L = new ArrayList<>(List.of('A', '1', 'a', 'ẞ'));
+
+            //Funktion zum überprüfen ob ein Character UpperCase ist
             Predicate<Character> P = C -> Character.isUpperCase(C); // Character::isUpperCase
 
-            L.removeIf(P);  // L.removeIf(P.negate());
-            System.out.println();
+            //removed alle Character die UpperCase sind.
+            L.removeIf(P);  
+            // L.removeIf(P.negate()); um die umgekehrte Ausgabe Auszugeben
+            System.out.println("Filterung oder Entfernung einer Liste:");
+            System.out.println(L+"\n");
         }
     
         // Sortierung 1
+        // TODO: hier weitermachen
         {
             Comparator<String>
                 Comp = String::compareTo,   // normaler lexikal. Stringvergleich
