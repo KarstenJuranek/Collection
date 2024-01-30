@@ -190,19 +190,22 @@ public class Collections
         {
             // Beschreibung:
             // * Funktionale/deklarative Programmierung:
-            //   + Beschreibung dessen, *was* zu tun ist (nicht *wie*)
-            //   + Ergebnis/Ziel ist relevant, nicht Weg/Methode
-            //   + Reihenfolge der Berechnung nicht relevant (Parallelität)
-            //   + Zwischenzustände in Variablen nur implizit (Parameter)
-            //   + Java: Funktionsausdrücke, funktionales 'switch'/'?:'
-            // * Funktionen sollen als Parameter an Methoden übergeben
-            //   werden können (z.B. für verschiedene Sortierverfahren)
-            // * Lambdas (...) -> {...} sind die Werte/Inhalte von Java-
-            //   Funktionstypen: Kode kann in Variablen gespeichert und
-            //   als Parameter an Methoden übergeben werden, wo der Kode
-            //   aktiviert werden kann (d.h. Kode wird wie Daten behandelt)
-            // * Eine Funktion besitzt 0..N Eingabe- und 1 Ausgabeparameter,
-            //   hat aber keinen Objekt-/Klassenkontext (d.h. steht für sich)
+            //   + Der Fokus liegt daran, zu erklären, was erreicht werden soll und nicht wie
+            //   + Das Ziel der Methode liegt im Vordergrund und nicht der Weg der Methode
+            //   + Die Reihenfolge der Berrechnung ist nicht relevant, dies ermöglicht die
+            //      Paralälität und fördert eine flexiblere Nutzung
+            //   + Zwischenzustände der Variable werden implizit behandelt, Das bedeutet, dass
+            //      der Fokus auf den Ergebnissen liegt.
+            
+            //   + Java/Lambdas: Funktionsausdrücke, funktionales 'switch'/'?:'
+            // * Funktionsausdrücke insbesondere Lambdas (dargestellt als (...) -> {...},
+            //      sind Werte von Funktionstypen, und können gespeichert und Parameter übergeben
+            // * Eine wichtige Eigenschaft ist die Übergabe von Funktionen als Parametet an Methoden.
+            //      Dies ermöglicht verschiedene Sortierverahren durch die Übergabe der Vergleichslogik
+            // * Durch die Verwendung von Lambda Ausrücken wird der Code selbst wie Daten behandelt,
+            //      der an geeigneten Stellen aktiviert wird.
+            // * Hierbei steht die Funktion für sich selbst und ist unabhängig von spezifischen 
+            //      Objekten- oder Klassenkontext
 
             // Beispiele:
             Function<String, Double> F1 = S -> Double.parseDouble(S);   // Double::parseDouble
