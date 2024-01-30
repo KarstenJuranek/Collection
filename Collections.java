@@ -208,30 +208,79 @@ public class Collections
             //      Objekten- oder Klassenkontext
 
             // Beispiele:
-            Function<String, Double> F1 = S -> Double.parseDouble(S);   // Double::parseDouble
-            Function<Double, String> F2 = D -> Double.toString(D);
-            UnaryOperator<String> F3 = S -> S.toUpperCase();    // String::toUpperCase
-            Predicate<String> F4 = S -> S.isEmpty();            //String::isEmpty;
+
+            /*
+            Function<T,R>
+            Eine Funktionsschnittstelle nimmt ein Argument Typ T an und gibt R wieder.
+            Eine generische Funktion, zum tansformieren von Typen.
+
+            UnaryOperator<T>
+            Ist eine spezielle Unterart der Funktion, der Eingabetyp entspricht zugleich 
+            dem Ausgabetyp. Somit wird eine Operandenoperation druchgeführt und somit
+            das Ergebnis des gleichen Types wiedergegeben
+
+            Predicate<T>
+            Wird verwendet und ein Argument T auf true oder false zu überprüfen.
+            Es wird oft verwendet um zu Prüfen ob ein bestimmtes Ziel erreicht wird.
+             */
+
+            // String wird zu einem Double geparsed
+            // Double::parseDouble --- Alternative
+            Function<String, Double> A1 = S -> Double.parseDouble(S);   
+            
+            //Parsing von einem Double zu einem String
+            Function<Double, String> A2 = D -> Double.toString(D);
+
+            // String::toUpperCase --- Alternative
+            UnaryOperator<String> A3 = S -> S.toUpperCase();
+
+            //String::isEmpty;    --- Alternative
+            Predicate<String> A4 = S -> S.isEmpty();
+            
+            //Überprüfung
             double
-                D1 = F1.apply("1234.5678E9");
+                //String to Double
+                D1 = A1.apply("1234.5678E9");
             String
-                S2 = F2.apply(1234.5678E9),
-                S3 = F3.apply("hello world!");
+                //Double to String
+                S1 = A2.apply(1234.5678E9),
+                //Letters toUppercase
+                S2 = A3.apply("hello world!");
             boolean
-                A4 = F4.test(" ");
-            //System.out.println(D1+", "+S2+", "+S3+", "+A4);
+                //Checking for empty String
+                B1 = A4.test(" ");
+            
+            //Ausgabe
+            System.out.println("Simple Functions: ");
+            System.out.println(D1+", "+S1+", "+S2+", "+B1 + "\n");
+            System.out.println("Bi Functions");
     
-            BiFunction<String, String, Boolean> G1 = (T, R) -> T.contains(R);   //String::contains;
-            BiFunction<String, Integer, String> G2 = (T, X) -> T.substring(X);  //String::substring;
-            BinaryOperator<String> G3 = (T, R) -> T.concat(R);  //String::concat;
-            BiPredicate<String, String> G4 = String::contains;
+
+            //String::contains;
+            BiFunction<String, String, Boolean> G1 = (T, R) -> T.contains(R);   
+        
+            BiPredicate<String, String> G2 = String::contains;
+
+            //String::concat; --- wird verwendet um Zeichenketten zu verbinden
+            BinaryOperator<String> G3 = (T, R) -> T.concat(R);  
+
+            //String::substring; --- wird verwendet um einen Teil des String in einen substring
+            //                         zu verwenden
+            BiFunction<String, Integer, String> G4 = (T, X) -> T.substring(X);  
+            
             boolean
-                B1 = G1.apply("blabla", "bla"),
-                B4 = G4.test("blabla", "abc");
+            //Zwei String als Eingabeparametet, wiedergegeben wird der Boolsche Wert, ob 
+            //String zwei in String 1 vorhanden
+                B2 = G1.apply("blabla", "bla"),
+            //Boolsche wiedergabem ob String 2 in String 1 vorhanden ist.
+                B3 = G2.test("blabla", "abc");
             String
-                T2 = G2.apply("blabla", 3),
-                T3 = G3.apply("bla", "bla");
-            //System.out.println(B1+", "+B4+", "+T2+", "+T3);
+            //Beide String Eingabeparameter werden verbunden
+                S3 = G3.apply("bla", "bla"),
+            //Ein Substring wird gebildet ab dem 4ten Buchstaben des Eingabestrings
+                S4 = G4.apply("blabla", 3);
+
+            System.out.println(B2+", "+B3+", "+S3+", "+S4);
         }
         
         // ### Vordefinierte Funktionen und Methoden mit Funktionsparametern ###
