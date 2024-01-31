@@ -403,17 +403,27 @@ public class Collections {
         
         // Konstruktion/Kreation
         {
+            // Erstellen von Random Zahlen
             int N = 10;
             Random R = new Random();
-            Supplier<Integer> Supp = () -> R.nextInt(N);
-            UnaryOperator<Integer> Op = X -> X * X;
 
-            Map<Integer, Integer> M = new HashMap<>();
+            /*
+
+            */
+            Supplier<Integer> Supplier1 = () -> R.nextInt(N);
+
+            // Eine Funktion, die nur Integer Werte Quadriert
+            UnaryOperator<Integer> UO = X -> X * X;
+
+            // Erstellen einer HashMap bestehend aus Integer Werten
+            Map<Integer, Integer> M1 = new HashMap<>();
+            // for-Schleife bei denen Ausgehend von 0 die random Schlüsselzahlen Quadriert werden
             for (int I = 0; I < N; I++) {
-                int Z = Supp.get(); // trägt Z nur ein,
-                M.computeIfAbsent(Z, Op); // wenn noch nicht vorhanden
+                int Zahlen = Supplier1.get(); // trägt Zahlen nur ein,
+                M1.computeIfAbsent(Zahlen, UO); // wenn noch nicht vorhanden
             }
-            // System.out.println(M);
+            System.out.println("Supplier:")
+            System.out.println(M1);
         }
 
         // ### Beispiele für selbstdefinierte Funktionen ###
