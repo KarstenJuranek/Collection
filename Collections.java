@@ -481,9 +481,8 @@ public class Collections {
         }
 
         @FunctionalInterface
-        interface TriPredicate<T, U, V>
-        {
-            //Drei Eingabe- Parameter (X,Y,Z) und eine Boolsche Ausgabe (Predicate)
+        interface TriPredicate<T, U, V> {
+            // Drei Eingabe- Parameter (X,Y,Z) und eine Boolsche Ausgabe (Predicate)
             boolean test(T X, U Y, V Z);
         }
         // TODO: Anagram prüfen mit <String, Integer, Integer> Regex
@@ -493,7 +492,8 @@ public class Collections {
             boolean resultA = A.test("blabblub", "blab", "blub");
 
             // Überprüfung ob ein bestimmter selbstdefinierter String enthalten ist/sind
-            TriPredicate<String, String, String> B = (X1, X2, X3) -> X1.contains("blub") && X2.contains("blub") && X3.contains("blub");
+            TriPredicate<String, String, String> B = (X1, X2, X3) -> X1.contains("blub") && X2.contains("blub")
+                    && X3.contains("blub");
             boolean resultB = B.test("blabblub", "blub", "blub");
 
             System.out.println("\nFunctionalPredicate:");
@@ -506,9 +506,36 @@ public class Collections {
             void accept(T X, U Y, V Z);
         }
         {
-            // Ausgabe von Fibonacci Zahlen
+            List<Integer> L1 = new ArrayList<>();
+            for (int i = 0; i <= 100; i++) {
+                L1.add(i);
+            }
+
+            Predicate<Integer> E = X -> X % 2 == 0;
+            Predicate<Integer> F = X -> {
+                int a = 0, b = 1, c = 0;
+                while (c < X) {
+                    if (X == c) {
+                        return true;
+                    }
+                    a = b;
+                    b = c;
+                    c = a + b;
+                }
+                return false;
+            };
+
+            TriConsumer<List<Integer>, Predicate<Integer>, Predicate<Integer>> evenFiboConsumer = (list, p1, p2) -> {
+                for (Integer X : list) {
+                    if (p1.test(X) && (p2).test(X)) {
+                        System.out.print(X + ", ");
+                    }
+                    System.out.println("p1");
+                }
+            };
+            System.out.println("\nEven Fibonaccis: ");
+            evenFiboConsumer.accept(L1, E, F);
         }
-        // Bsp. selbst ausdenken
 
         // ### Aufgaben ###
         {
