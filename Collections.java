@@ -347,27 +347,27 @@ public class Collections {
             Comparator<String>
             // Stringvergleich nach der Länge des Strings
             Comp = (S1, S2) -> Integer.compare(S1.length(), S2.length());
-            //Comp2 = Comparator.comparingInt(String::length);
+            // Comp2 = Comparator.comparingInt(String::length);
 
             // Erstellen einer TreeMap, deren Inhalte sortiert werden sollen
             Map<String, Integer>
             // Definieren der Maps und nach deren Sortierverfahren
             Map1 = Map.of("one", 1, "two", 2,
-                    "three", 3, "four", 4), 
-            Map2 = new TreeMap<>(Comp),
-            Map3 = new TreeMap<>();
-            //Einfügen der Werte in die TreeMap
+                    "three", 3, "four", 4),
+                    Map2 = new TreeMap<>(Comp),
+                    Map3 = new TreeMap<>();
+            // Einfügen der Werte in die TreeMap
             Map2.putAll(Map1);
             Map3.putAll(Map1);
-            //forEach Ausgabe bietet mehr Formatierungsfreiheiten in der Ausgabe.
-            //Einzelne Werte werden ausgegeben
-            Map2.forEach((key, value) -> System.out.print(Map.entry(key, value)+"\t"));
+            // forEach Ausgabe bietet mehr Formatierungsfreiheiten in der Ausgabe.
+            // Einzelne Werte werden ausgegeben
+            Map2.forEach((key, value) -> System.out.print(Map.entry(key, value) + "\t"));
             // Der Grund, warum nur 3 Ausgaben vorherrschen ist, da one = two 3 Zeichen
             // besitzen und somit nach dem Comp die natürliche Reihenfolge greift.
 
-            // Bei dieser Ausgabe wechseln sich one und two in der Ausgabe ab, da beide 3 
+            // Bei dieser Ausgabe wechseln sich one und two in der Ausgabe ab, da beide 3
             // Zwichen besitzen
-            System.out.println("\n"+Map3);
+            System.out.println("\n" + Map3);
 
             // Weitere funktionale Methoden auf Maps:
             // replaceAll, compute(IfAbsent/IfPresent), merge
@@ -375,32 +375,34 @@ public class Collections {
 
         // Konsumption
         {
-            //Andere Vorgehensweise um eine ArrayListe zu erstellen mit einen bestimmten Inhalt.
-            List<Integer> 
-            L = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
-            
-            //Boolsche Funktion zur Rückgabe ob eine Zahl Gerade ist
+            // Andere Vorgehensweise um eine ArrayListe zu erstellen mit einen bestimmten
+            // Inhalt.
+            List<Integer> L = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+
+            // Boolsche Funktion zur Rückgabe ob eine Zahl Gerade ist
             Predicate<Integer> P = X -> (X & 1) == 0;
 
             /*
-            Ein Consumer ist eine Functional Interface, das für Operationen verwendet wird, das
-            an allen Elementen verwendet wird. Das bedeutet, das ein Consumer nur die Ausgabe von
-            Ergebnissen steuert.
+             * Ein Consumer ist eine Functional Interface, das für Operationen verwendet
+             * wird, das
+             * an allen Elementen verwendet wird. Das bedeutet, das ein Consumer nur die
+             * Ausgabe von
+             * Ergebnissen steuert.
              */
 
-            //Erstellung zwei Consumer für zwei spezifische Ausgaben
+            // Erstellung zwei Consumer für zwei spezifische Ausgaben
             Consumer<Integer> Cons1 = X -> System.out.print(X + "\t"),
                     Cons2 = X -> {
                         if (P.test(X))
                             System.out.print(X + "\t");
                     };
 
-            //Ausgabe der Consumer
+            // Ausgabe der Consumer
             System.out.println("\nConsumer:");
-            //L.forEach(Cons1);
+            // L.forEach(Cons1);
             L.forEach(Cons2);
         }
-        
+
         // Konstruktion/Kreation
         {
             // Erstellen von Random Zahlen
@@ -408,9 +410,9 @@ public class Collections {
             Random R = new Random();
 
             /*
-            Supplier dienen dazu Werte zu erzeugen, ohne das ein Argument vorhanden ist.
-            Sie hat eine einzige Methode, die get() Methode
-            */
+             * Supplier dienen dazu Werte zu erzeugen, ohne das ein Argument vorhanden ist.
+             * Sie hat eine einzige Methode, die get() Methode
+             */
             // Eine zufällige Integer wird an den Supplier geliefert.
             Supplier<Integer> Supplier1 = () -> R.nextInt(N);
 
@@ -419,7 +421,8 @@ public class Collections {
 
             // Erstellen einer HashMap bestehend aus Integer Werten
             Map<Integer, Integer> M1 = new HashMap<>();
-            // for-Schleife bei denen Ausgehend von 0 die random Schlüsselzahlen Quadriert werden
+            // for-Schleife bei denen Ausgehend von 0 die random Schlüsselzahlen Quadriert
+            // werden
             for (int I = 0; I < N; I++) {
                 int Zahlen = Supplier1.get(); // trägt Zahlen nur ein,
                 M1.computeIfAbsent(Zahlen, UO); // wenn noch nicht vorhanden
@@ -430,13 +433,16 @@ public class Collections {
         }
 
         // ### Beispiele für selbstdefinierte Funktionen ###
-        
+
         /*
-         TriFunctions sind selbstdefinierte Funktionen, die ebenso erweitert werden können.
-         Functional Interfaces sind dafür vorgesehen explizit Lambda Funktionen zu übergeben.
+         * TriFunctions sind selbstdefinierte Funktionen, die ebenso erweitert werden
+         * können.
+         * Functional Interfaces sind dafür vorgesehen explizit Lambda Funktionen zu
+         * übergeben.
          */
 
-        // Ein Functional Interface, das drei Eingabe-Parameter liefert und den Rückgabewert R
+        // Ein Functional Interface, das drei Eingabe-Parameter liefert und den
+        // Rückgabewert R
         @FunctionalInterface
         interface TriFunction<T, U, V, R> {
             // mit der Mehtode apply, werden diese drei Eingabe-Parameter definiert.
@@ -444,7 +450,8 @@ public class Collections {
         }
         {
             // Erstellen der Funktionsschnittstelle
-            // Erstellung eines Substrings, der aus den String zwischen den Start- und Endinteger stellen besteht.
+            // Erstellung eines Substrings, der aus den String zwischen den Start- und
+            // Endinteger stellen besteht.
             TriFunction<String, Integer, Integer, String> A1 = (S, X, Y) -> S.substring(X, Y); // String::substring
             String Substring1 = A1.apply("hahaha", 1, 4);
             System.out.println("\nFunctional Interfaces:");
@@ -452,28 +459,54 @@ public class Collections {
         }
 
         @FunctionalInterface
+        // TriOperator/Operator haben den gleichen ein und Ausgabetypen
         interface TriOperator<T> // extends TriFunction<T, T, T, T>
         {
+            // Deinieren der drei Eingabetypen
             T apply(T X, T Y, T Z);
         }
         {
-            TriOperator<Long> Min = (X1, X2, X3) -> Math.min(X1, Math.min(X2, X3)),
-                    Max = (X1, X2, X3) -> Math.max(X1, Math.max(X2, X3));
-            long L1 = Min.apply(1L, 2L, 3L),
-                    L2 = Max.apply(1L, 2L, 3L);
+            TriOperator<Long>
+            // Verschachtelte Math Methode, erst wird das min/max aus X2/X3 gebildet,
+            // anschließend wird das Ergebnis mit X1 verglichen.
+            Min1 = (X1, X2, X3) -> Math.min(X1, Math.min(X2, X3)),
+                    Max1 = (X1, X2, X3) -> Math.max(X1, Math.max(X2, X3));
+
+            // Explizite Ausgabe des Datentypes muss immer erfolgen.
+            long L1 = Min1.apply(1L, 2L, 3L),
+                    L2 = Max1.apply(4L, 5L, 6L);
+
+            System.out.println("\nFunctional Operator:");
+            System.out.println("Min: " + L1 + "\n" + "Max: " + L2);
         }
 
         @FunctionalInterface
-        interface TriPredicate<T, U, V> // extends TriFunction<T, U, V, Boolean>
+        interface TriPredicate<T, U, V>
         {
+            //Drei Eingabe- Parameter (X,Y,Z) und eine Boolsche Ausgabe (Predicate)
             boolean test(T X, U Y, V Z);
         }
-        // Bsp. selbst ausdenken
+        // TODO: Anagram prüfen mit <String, Integer, Integer> Regex
+        {
+            // Überprüfung ob String zwei und String drei in String 1 enthalten sind
+            TriPredicate<String, String, String> A = (X1, X2, X3) -> X1.contains(X2) && X1.contains(X3);
+            boolean resultA = A.test("blabblub", "blab", "blub");
+
+            // Überprüfung ob ein bestimmter selbstdefinierter String enthalten ist/sind
+            TriPredicate<String, String, String> B = (X1, X2, X3) -> X1.contains("blub") && X2.contains("blub") && X3.contains("blub");
+            boolean resultB = B.test("blabblub", "blub", "blub");
+
+            System.out.println("\nFunctionalPredicate:");
+            System.out.println("Result A: " + resultA + "\t" + "Result B: " + resultB);
+        }
 
         @FunctionalInterface
         interface TriConsumer<T, U, V> // keine Ableitung von Oberklasse möglich
         {
             void accept(T X, U Y, V Z);
+        }
+        {
+            // Ausgabe von Fibonacci Zahlen
         }
         // Bsp. selbst ausdenken
 
