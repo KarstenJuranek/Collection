@@ -512,29 +512,17 @@ public class Collections {
             }
 
             Predicate<Integer> E = X -> X % 2 == 0;
-            Predicate<Integer> F = X -> {
-                int a = 0, b = 1, c = 0;
-                while (c < X) {
-                    if (X == c) {
-                        return true;
-                    }
-                    a = b;
-                    b = c;
-                    c = a + b;
-                }
-                return false;
-            };
+            Predicate<Integer> F = X -> X <= 50;
 
-            TriConsumer<List<Integer>, Predicate<Integer>, Predicate<Integer>> evenFiboConsumer = (list, p1, p2) -> {
+            TriConsumer<List<Integer>, Predicate<Integer>, Predicate<Integer>> evenNumbersBelow50 = (list, p1, p2) -> {
                 for (Integer X : list) {
                     if (p1.test(X) && (p2).test(X)) {
                         System.out.print(X + ", ");
                     }
-                    System.out.println("p1");
                 }
             };
-            System.out.println("\nEven Fibonaccis: ");
-            evenFiboConsumer.accept(L1, E, F);
+            System.out.println("\nEven below 50: ");
+            evenNumbersBelow50.accept(L1, E, F);
         }
 
         // ### Aufgaben ###
