@@ -408,8 +408,10 @@ public class Collections {
             Random R = new Random();
 
             /*
-
+            Supplier dienen dazu Werte zu erzeugen, ohne das ein Argument vorhanden ist.
+            Sie hat eine einzige Methode, die get() Methode
             */
+            // Eine zufällige Integer wird an den Supplier geliefert.
             Supplier<Integer> Supplier1 = () -> R.nextInt(N);
 
             // Eine Funktion, die nur Integer Werte Quadriert
@@ -422,19 +424,31 @@ public class Collections {
                 int Zahlen = Supplier1.get(); // trägt Zahlen nur ein,
                 M1.computeIfAbsent(Zahlen, UO); // wenn noch nicht vorhanden
             }
-            System.out.println("Supplier:")
+            System.out.println("\n");
+            System.out.println("Supplier:");
             System.out.println(M1);
         }
 
         // ### Beispiele für selbstdefinierte Funktionen ###
+        
+        /*
+         TriFunctions sind selbstdefinierte Funktionen, die ebenso erweitert werden können.
+         Functional Interfaces sind dafür vorgesehen explizit Lambda Funktionen zu übergeben.
+         */
 
+        // Ein Functional Interface, das drei Eingabe-Parameter liefert und den Rückgabewert R
         @FunctionalInterface
         interface TriFunction<T, U, V, R> {
+            // mit der Mehtode apply, werden diese drei Eingabe-Parameter definiert.
             R apply(T X, U Y, V Z);
         }
         {
-            TriFunction<String, Integer, Integer, String> F3 = (S, X, Y) -> S.substring(X, Y); // String::substring
-            String R = F3.apply("hahaha", 1, 4);
+            // Erstellen der Funktionsschnittstelle
+            // Erstellung eines Substrings, der aus den String zwischen den Start- und Endinteger stellen besteht.
+            TriFunction<String, Integer, Integer, String> A1 = (S, X, Y) -> S.substring(X, Y); // String::substring
+            String Substring1 = A1.apply("hahaha", 1, 4);
+            System.out.println("\nFunctional Interfaces:");
+            System.out.println(Substring1);
         }
 
         @FunctionalInterface
